@@ -1,5 +1,6 @@
 name: Weekly Index Update
-
+jobs:
+  
 on:
   schedule:
     - cron: '0 0 * * 1'   # Every Monday at 00:00 UTC
@@ -11,6 +12,12 @@ permissions:
 jobs:
   weekly-update:
     runs-on: ubuntu-latest
+
+    deploy:
+      permissions:
+        id-token: write
+        pages: write
+        contents: read
 
     steps:
       - name: Checkout repository
