@@ -1768,7 +1768,7 @@
     "language": "TypeScript",
     "category": "ai-ml",
     "categoryName": "AI & Machine Learning",
-    "description": "\u26a1 [SPONSORED] AI-automated GitHub code review bot with automated security audits, unit test generation, and AST diffing.",
+    "description": "⚡ [SPONSORED] AI-automated GitHub code review bot with automated security audits, unit test generation, and AST diffing.",
     "topics": [
       "ai-code-review",
       "github-bot",
@@ -1797,7 +1797,7 @@
     "language": "Rust",
     "category": "databases",
     "categoryName": "Databases & Storage",
-    "description": "\u26a1 [SPONSORED] Serverless Postgres with instant database branching, scale-to-zero compute, and storage separated from compute.",
+    "description": "⚡ [SPONSORED] Serverless Postgres with instant database branching, scale-to-zero compute, and storage separated from compute.",
     "topics": [
       "postgres",
       "serverless",
@@ -1921,7 +1921,7 @@
           r.language.toLowerCase().includes(q) ||
           (r.topics && r.topics.some(t => t.toLowerCase().includes(q)))
         );
-      }}
+      }
 
       // Sorting
       list.sort((a, b) => {
@@ -1994,14 +1994,14 @@
                 </div>
                 <div class="card-actions">
                   <button class="star-bookmark-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${repo.id}', event)" title="${isFav ? 'Remove Bookmark' : 'Bookmark Repo'}">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.29 18.13 21.15 12 17.77 5.87 21.15 7 14.29 2 9.27 8.91 8.26 12 2"></polygon></svg>
                   </button>
                 </div>
               </div>
 
               <div class="repo-main">
                 <a href="${repo.githubUrl}" target="_blank" rel="noopener noreferrer" class="repo-name-link" onclick="event.stopPropagation()">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.123 1.474-4.123 1.474-.544.93-1.335 1.176-1.335 1.176-.954.651.072.639.072.639 1.055-.073 1.609-.824 1.609-.824.887-1.216 2.086-1.537 2.806-.946.144.73.468 1.223.874 1.503.602.4 1.365.568 2.162.464.64-.078.671-.524.671-.524v-1.473c-3.667-.51-7.535-2.904-7.535-8.62 0-1.905.678-3.467 1.789-4.683-.18-.44-.775-2.194.169-4.567 0 0 1.464-.472 4.793 1.781A16.6 16.6 0 0 1 12 5.289c1.483 0 2.976.2 4.371.586 3.328-2.253 4.791-1.781 4.791-1.781.945 2.373.349 4.127.169 4.567 1.112 1.216 1.789 2.778 1.789 4.683 0 5.732-3.87 8.11-7.541 8.616.594.517.882 1.273.882 2.58v3.825c0 .316.194.69.799.57C20.562 21.8 24 17.302 24 12c0-6.627-5.373-12-12-12z"></path></svg>
                   <span class="repo-owner">${repo.owner}/</span><strong>${repo.name}</strong>
                 </a>
                 <p class="repo-desc">${repo.description}</p>
@@ -2027,11 +2027,9 @@
 
               <div class="card-buttons">
                 <a href="${repo.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" onclick="event.stopPropagation()">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                   GitHub ↗
                 </a>
                 <button class="btn btn-card-clone" onclick="copyClone('${repo.cloneUrl}', event)" title="Copy git clone command">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                   Clone
                 </button>
                 <button class="btn btn-card-clone" onclick="openRepoModal('${repo.id}', event)" title="Quick View Summary">
@@ -2292,7 +2290,7 @@
 
       document.getElementById('modal-repo-title').innerHTML = `
         <span style="display:flex; align-items:center; gap:8px;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.123 1.474-4.123 1.474-.544.93-1.335 1.176-1.335 1.176-.954.651.072.639.072.639 1.055-.073 1.609-.824 1.609-.824.887-1.216 2.086-1.537 2.806-.946.144.73.468 1.223.874 1.503.602.4 1.365.568 2.162.464.64-.078.671-.524.671-.524v-1.473c-3.667-.51-7.535-2.904-7.535-8.62 0-1.905.678-3.467 1.789-4.683-.18-.44-.775-2.194.169-4.567 0 0 1.464-.472 4.793 1.781A16.6 16.6 0 0 1 12 5.289c1.483 0 2.976.2 4.371.586 3.328-2.253 4.791-1.781 4.791-1.781.945 2.373.349 4.127.169 4.567 1.112 1.216 1.789 2.778 1.789 4.683 0 5.732-3.87 8.11-7.541 8.616.594.517.882 1.273.882 2.58v3.825c0 .316.194.69.799.57C20.562 21.8 24 17.302 24 12c0-6.627-5.373-12-12-12z"></path></svg>
           ${repo.fullName}
         </span>
       `;
@@ -2347,7 +2345,7 @@
 
         <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:16px;">
           <button class="btn btn-secondary" onclick="toggleFavorite('${repo.id}'); openRepoModal('${repo.id}')">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="${getFavorites().includes(repo.id) ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="${getFavorites().includes(repo.id) ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.29 18.13 21.15 12 17.77 5.87 21.15 7 14.29 2 9.27 8.91 8.26 12 2"></polygon></svg>
             ${getFavorites().includes(repo.id) ? 'Bookmarked' : 'Add to Bookmarks'}
           </button>
           <a href="${repo.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sponsor" style="font-size:0.85rem;">
