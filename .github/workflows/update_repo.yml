@@ -1,5 +1,5 @@
 name: Weekly Index Update
-jobs:
+
   
 on:
   schedule:
