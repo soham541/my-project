@@ -27,7 +27,7 @@ jobs:
 
       - name: Run weekly update script
         run: |
-          python scripts/update_repos.py
+          python update_repos.py
 
       - name: Commit and push changes
         run: |
