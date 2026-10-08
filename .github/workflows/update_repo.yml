@@ -1,6 +1,5 @@
 name: Weekly Index Update
 
-  
 on:
   schedule:
     - cron: '0 0 * * 1'   # Every Monday at 00:00 UTC
@@ -12,12 +11,10 @@ permissions:
 jobs:
   weekly-update:
     runs-on: ubuntu-latest
-
-    deploy:
-      permissions:
-        id-token: write
-        pages: write
-        contents: read
+    permissions:
+      contents: write
+      id-token: write
+      pages: write
 
     steps:
       - name: Checkout repository
@@ -30,8 +27,6 @@ jobs:
 
       - name: Run weekly update script
         run: |
-          # Replace this with your actual update logic.
-          # Example: regenerate or refresh index.html
           python scripts/update_repos.py
 
       - name: Commit and push changes
@@ -39,5 +34,7 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
-          git diff --cached --quiet || git commit -m "chore: weekly site update"
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: weekly site update"
+            git push
+          fi
