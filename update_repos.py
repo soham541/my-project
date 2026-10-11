@@ -5,6 +5,33 @@ import urllib.parse
 import urllib.request
 from datetime import datetime
 
+
+def load_env_file():
+    """Load .env from the repo root if present, without requiring python-dotenv."""
+    project_root = os.path.dirname(os.path.abspath(__file__))
+    env_path = os.path.join(project_root, ".env")
+
+    if os.path.exists(env_path):
+        try:
+            from dotenv import load_dotenv
+
+            load_dotenv(env_path)
+            return
+        except Exception:
+            pass
+
+        with open(env_path, "r", encoding="utf-8") as fh:
+            for raw_line in fh:
+                line = raw_line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, value = [part.strip() for part in line.split("=", 1)]
+                value = value.strip().strip("\"'")
+                os.environ.setdefault(key, value)
+
+
+load_env_file()
+
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 HEADERS = {
     "User-Agent": "GitRank-Bot",
