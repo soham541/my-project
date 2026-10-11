@@ -1,7 +1,6 @@
 import json
 import os
 import re
-import sys
 import urllib.parse
 import urllib.request
 from datetime import datetime
@@ -14,59 +13,75 @@ HEADERS = {
 if GITHUB_TOKEN:
     HEADERS["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 
+# Increased fetch limits so the site has more repositories per category.
 CATEGORIES = {
     "ai-ml": {
         "query": "stars:>10000 machine learning OR llm OR deep-learning OR ai",
         "categoryName": "AI & Machine Learning",
-        "limit": 10,
+        "limit": 25,
     },
     "web": {
         "query": "stars:>10000 react OR vue OR frontend OR javascript OR typescript",
         "categoryName": "Web Development",
-        "limit": 10,
+        "limit": 25,
     },
     "devops": {
         "query": "stars:>8000 docker OR kubernetes OR devops OR cloud-native",
         "categoryName": "DevOps & Cloud Native",
-        "limit": 8,
+        "limit": 20,
     },
     "databases": {
         "query": "stars:>5000 database OR vector-database OR analytics OR postgres",
         "categoryName": "Databases & Storage",
-        "limit": 8,
+        "limit": 20,
     },
     "security": {
         "query": "stars:>4000 security OR pentesting OR cybersecurity OR vulnerability",
         "categoryName": "Cyber Security",
-        "limit": 8,
+        "limit": 20,
     },
     "mobile": {
         "query": "stars:>5000 mobile OR flutter OR react-native OR cross-platform",
         "categoryName": "Mobile & Cross-Platform",
-        "limit": 8,
+        "limit": 20,
     },
     "systems": {
         "query": "stars:>5000 rust OR go OR linux OR systems-programming",
         "categoryName": "Systems & Languages",
-        "limit": 8,
+        "limit": 20,
     },
     "alternatives": {
         "query": "stars:>3000 self-hosted OR firebase-alternative OR open-source-alternative",
         "categoryName": "Open Source Alternatives",
-        "limit": 8,
+        "limit": 20,
     },
     "trending": {
         "query": "stars:>500 created:>2024-01-01",
         "categoryName": "Trending & Hot",
-        "limit": 12,
+        "limit": 20,
     },
 }
 
 
 def github_request(url):
-    req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req) as resp:
-        return json.loads(resp.read().decode())
+    """Call GitHub API and raise readable errors when the request fails."""
+    try:
+        req = urllib.request.Request(url, headers=HEADERS)
+        with urllib.request.urlopen(req) as resp:
+            payload = json.loads(resp.read().decode())
+            if isinstance(payload, dict) and "message" in payload:
+                raise RuntimeError(f"GitHub API error: {payload['message']}")
+            return payload
+    except urllib.error.HTTPError as exc:
+        error_body = exc.read().decode("utf-8", errors="replace")
+        try:
+            error_payload = json.loads(error_body)
+            message = error_payload.get("message", str(exc))
+        except Exception:
+            message = error_body or str(exc)
+        raise RuntimeError(f"GitHub API request failed: {message}") from exc
+    except Exception as exc:
+        raise RuntimeError(f"GitHub API request failed: {exc}") from exc
 
 
 def normalize_repo(item, category, category_name):
@@ -125,7 +140,9 @@ def fetch_repos_for_category(category, config):
     try:
         payload = github_request(url)
         items = payload.get("items", [])
-        return [normalize_repo(item, category, config["categoryName"]) for item in items]
+        repos = [normalize_repo(item, category, config["categoryName"]) for item in items]
+        print(f"Fetched {category}: {len(repos)} repositories")
+        return repos
     except Exception as exc:
         print(f"[WARN] Failed to fetch category {category}: {exc}")
         return []
@@ -182,7 +199,6 @@ def main():
     for category, config in CATEGORIES.items():
         repos = fetch_repos_for_category(category, config)
         repo_list.extend(repos)
-        print(f"Fetched {category}: {len(repos)} repositories")
 
     repo_list = dedupe_repos(repo_list)
     repo_list = apply_global_ranking(repo_list)
